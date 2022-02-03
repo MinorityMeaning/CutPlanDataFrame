@@ -49,5 +49,5 @@ val jsonPlan = s"[${getJson(result_df.queryExecution.optimizedPlan).mkString(","
   }
   ```
 
-P.S. Issue in Jira: https://issues.apache.org/jira/browse/SPARK-38068
+P.S. Issue in Jira: https://issues.apache.org/jira/browse/SPARK-38068 <br>
      Question in stackoverflow: https://stackoverflow.com/questions/70910318/why-do-the-persist-and-cache-methods-shorten-dataframe-plan-in-spark
