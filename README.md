@@ -32,3 +32,19 @@ If you use the spark version 3.1.2, then there is no such problem. That is, the 
 ```
 5. Four plan files will appear in the root directory. Now you can see the problem.
 ![](compare_file.png)
+
+UPD(1):
+
+Now I'm trying to convert each node to json separately. Now it doesn't work perfectly, but I think we need to go in this direction.
+The thing is, I'm losing some data lineage.
+
+```Scala
+val jsonPlan = s"[${getJson(result_df.queryExecution.optimizedPlan).mkString(",")}]"
+
+  def getJson(lp: TreeNode[_]): Seq[String] = {
+    val children = (lp.innerChildren ++ lp.children.map(c => c.asInstanceOf[TreeNode[_]])).distinct
+    JsonMethods.compact(JsonMethods.render(JsonMethods.parse(lp.toJSON)(0))) +:
+      getJson(t.asInstanceOf[TreeNode[_]])))
+      children.flatMap(t => getJson(t))
+  }
+  ```
