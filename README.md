@@ -48,3 +48,5 @@ val jsonPlan = s"[${getJson(result_df.queryExecution.optimizedPlan).mkString(","
       children.flatMap(t => getJson(t))
   }
   ```
+
+P.S. Issue in Jira: https://issues.apache.org/jira/browse/SPARK-38068
